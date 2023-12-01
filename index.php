@@ -1,7 +1,19 @@
+<?php       
+  require('inc/essentials.php');
+  require('inc/db_config.php');    
+
+  session_start(); 
+  session_regenerate_id(true);
+  if((isset($_SESSION['adminLogin']) && $_SESSION['adminLogin']==true)){  
+    redirect('dashboard.php');
+  }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8">
+<head>
+    <meta charset="UTF-8">  
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hotel Paradiso</title>
     <?php require('inc/links.php') ?>
@@ -9,23 +21,16 @@
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <link rel="stylesheet" href="css/common.css">
     <style>
-      .availability-form{
-        margin-top: -50px;
-        z-index: 2;
-        position: relative;
-      }
-
-      @media screen and (max-width: 575px) {
-        .availability-form{
-          margin-top: 25px;
-          padding: 0 35px;
+        div.login-form{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,50%);
+            width: 400px;
         }
-      }
-
     </style>
-  </head>
-
-  <body class="bg-light">
+</head>
+<body class="bg-light">  
 
       <?php require('inc/header.php') ?>
 
