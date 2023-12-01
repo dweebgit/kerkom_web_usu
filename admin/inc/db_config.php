@@ -20,22 +20,22 @@ function filteration($data){
     }
 }
 
-function select($sql,$value,$datatypes)
+function select($sql,$values,$datatypes)
 {
     $con = $GLOBALS['con'];
     if($stmt = mysqli_prepare($con,$sql)){
-       mysqli_stmt_bind_param($stmt,$datatypes,...$values);
-       if(mysqli_stat_execute($stmt)){
-        $res = mysqli_stnt_get_result($stmt);
+       mysqli_stmt_bind_param($stmt,$datatypes, ...$values);
+       if(mysqli_stmt_execute($stmt)){
+        $res = mysqli_stmt_get_result($stmt);
         return $res;
        }
-    }
     else{ 
         mysqli_stnt_close($stmt);
-        die("Query cannot be executed - select");
+        die("Query cannot be executed - Select");
+        }
     }
     else{ 
-        die("Query cannot be prepared - select");
+        die("Query cannot be prepared - Select");
     }
 }
 
